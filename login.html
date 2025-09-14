@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Auth Forms</title>
+</head>
+
+<body class="min-h-screen bg-blue-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full">
+
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl text-blue-600">Welcome to NoteShare</h2>
+      <p class="text-gray-500 mt-2">Sign in to your account or create a new one</p>
+    </div>
+
+    <!-- Card -->
+    <div class="border rounded-xl shadow bg-white">
+      <div class="p-6 border-b">
+        <h3 class="text-lg font-semibold">Authentication</h3>
+        <p class="text-sm text-gray-500">Enter your credentials to access your account</p>
+      </div>
+      <div class="p-6">
+
+        <!-- Tabs header (static, no switching logic) -->
+        <div class="grid grid-cols-2 mb-6 border-b">
+          <button class="px-4 py-2 text-blue-600 border-b-2 border-blue-600">Login</button>
+          <button class="px-4 py-2 text-gray-600">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form class="space-y-4 mb-8">
+          <div>
+            <label for="login-username" class="block mb-1 text-sm">Username</label>
+            <input id="login-username" type="text" class="w-full border rounded px-3 py-2" placeholder="Enter your username" required />
+          </div>
+          <div>
+            <label for="login-password" class="block mb-1 text-sm">Password</label>
+            <input id="login-password" type="password" class="w-full border rounded px-3 py-2" placeholder="Enter your password" required />
+          </div>
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded">Sign In</button>
+        </form>
+
+        <!-- Register Form -->
+        <form class="space-y-4">
+          <div>
+            <label for="register-usertype" class="block mb-1 text-sm">Account Type</label>
+            <select id="register-usertype" class="w-full border rounded px-3 py-2">
+              <option>Student</option>
+              <option>Lecturer</option>
+              <option>Admin</option>
+            </select>
+          </div>
+          <div>
+            <label for="register-username" class="block mb-1 text-sm">Username</label>
+            <input id="register-username" type="text" class="w-full border rounded px-3 py-2" placeholder="Choose a username" required />
+          </div>
+          <div>
+            <label for="register-email" class="block mb-1 text-sm">Email</label>
+            <input id="register-email" type="email" class="w-full border rounded px-3 py-2" placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label for="register-phone" class="block mb-1 text-sm">Phone Number</label>
+            <input id="register-phone" type="tel" class="w-full border rounded px-3 py-2" placeholder="123-456-7890" required />
+          </div>
+          <div>
+            <label for="register-dob" class="block mb-1 text-sm">Date of Birth</label>
+            <input id="register-dob" type="date" class="w-full border rounded px-3 py-2" required />
+          </div>
+          <div>
+            <label for="register-password" class="block mb-1 text-sm">Password</label>
+            <input id="register-password" type="password" class="w-full border rounded px-3 py-2" required />
+          </div>
+          <div>
+            <label for="register-confirm-password" class="block mb-1 text-sm">Confirm Password</label>
+            <input id="register-confirm-password" type="password" class="w-full border rounded px-3 py-2" required />
+          </div>
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded">Create Account</button>
+        </form>
+
+      </div>
+    </div>
+
+    <!-- Back to Home -->
+    <div class="text-center mt-6">
+      <a href="index.html" class="text-blue-600 hover:underline">Back to Home</a>
+    </div>
+
+  </div>
+</body>
+</html>
