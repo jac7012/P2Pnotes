@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Dashboard</title>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl mb-2 text-blue-600">Student Dashboard</h1>
+      <p class="text-gray-500">Manage your notes, downloads, and collaborations</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+      <div class="p-4 border rounded-xl shadow bg-white">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm">My Notes</h3>
+          <span>[📖]</span>
+        </div>
+        <div class="text-2xl mt-2">3</div>
+        <p class="text-xs text-gray-500">+2 from last week</p>
+      </div>
+
+      <div class="p-4 border rounded-xl shadow bg-white">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm">Total Downloads</h3>
+          <span>[⬇]</span>
+        </div>
+        <div class="text-2xl mt-2">144</div>
+        <p class="text-xs text-gray-500">+12 from last week</p>
+      </div>
+
+      <div class="p-4 border rounded-xl shadow bg-white">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm">Leaderboard Rank</h3>
+          <span>[🏆]</span>
+        </div>
+        <div class="text-2xl mt-2">#15</div>
+        <p class="text-xs text-gray-500">↑ 3 positions</p>
+      </div>
+
+      <div class="p-4 border rounded-xl shadow bg-white">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm">Exchange Requests</h3>
+          <span>[👥]</span>
+        </div>
+        <div class="text-2xl mt-2">2</div>
+        <p class="text-xs text-gray-500">Pending responses</p>
+      </div>
+    </div>
+
+    <!-- Tabs (Static Example) -->
+    <div class="space-y-6">
+
+      <!-- Tabs List -->
+      <div class="flex space-x-4 border-b pb-2">
+        <button class="px-3 py-2 text-blue-600 border-b-2 border-blue-600">My Notes</button>
+        <button class="px-3 py-2 text-gray-600">Browse Notes</button>
+        <button class="px-3 py-2 text-gray-600">Upload Note</button>
+        <button class="px-3 py-2 text-gray-600">Exchanges</button>
+      </div>
+
+      <!-- My Notes -->
+      <div class="p-6 border rounded-xl bg-white">
+        <h2 class="text-lg font-semibold mb-1">My Uploaded Notes</h2>
+        <p class="text-gray-500 mb-4">Notes you've shared with the community</p>
+
+        <div class="space-y-4">
+          <div class="flex justify-between items-center p-4 border rounded-lg">
+            <div>
+              <h4 class="mb-1">Linear Algebra Chapter 3</h4>
+              <div class="flex space-x-2 text-sm text-gray-500">
+                <span class="px-2 py-1 bg-gray-200 rounded">Mathematics</span>
+                <span>⭐ 4.8 • 45 downloads</span>
+              </div>
+            </div>
+            <div class="space-x-2">
+              <button class="px-2 py-1 border rounded">Edit</button>
+              <button class="px-2 py-1 border rounded">Stats</button>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center p-4 border rounded-lg">
+            <div>
+              <h4 class="mb-1">Organic Chemistry Reactions</h4>
+              <div class="flex space-x-2 text-sm text-gray-500">
+                <span class="px-2 py-1 bg-gray-200 rounded">Chemistry</span>
+                <span>⭐ 4.6 • 32 downloads</span>
+              </div>
+            </div>
+            <div class="space-x-2">
+              <button class="px-2 py-1 border rounded">Edit</button>
+              <button class="px-2 py-1 border rounded">Stats</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Form -->
+      <div class="p-6 border rounded-xl bg-white">
+        <h2 class="text-lg font-semibold mb-1">Upload New Note</h2>
+        <p class="text-gray-500 mb-4">Share your notes with the community</p>
+
+        <form class="space-y-4">
+          <div>
+            <label for="note-title" class="block mb-1 text-sm">Note Title</label>
+            <input id="note-title" type="text" placeholder="Enter note title..." class="w-full border rounded px-3 py-2" />
+          </div>
+          <div>
+            <label for="note-subject" class="block mb-1 text-sm">Subject</label>
+            <select id="note-subject" class="w-full border rounded px-3 py-2">
+              <option>Mathematics</option>
+              <option>Physics</option>
+              <option>Chemistry</option>
+              <option>Computer Science</option>
+            </select>
+          </div>
+          <div>
+            <label for="note-description" class="block mb-1 text-sm">Description</label>
+            <input id="note-description" type="text" placeholder="Brief description..." class="w-full border rounded px-3 py-2" />
+          </div>
+          <div>
+            <label for="note-file" class="block mb-1 text-sm">Upload File</label>
+            <input id="note-file" type="file" class="w-full border rounded px-3 py-2" />
+          </div>
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded">Upload Note</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
