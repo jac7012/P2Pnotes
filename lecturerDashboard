@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lecturer Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl mb-2 text-blue-600">Lecturer Dashboard</h1>
+      <p class="text-gray-500">Review student notes and provide feedback</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white shadow rounded-lg p-4">
+        <p class="text-sm">Pending Reviews</p>
+        <div class="text-2xl font-bold">3</div>
+        <p class="text-xs text-gray-500">Awaiting your review</p>
+      </div>
+
+      <div class="bg-white shadow rounded-lg p-4">
+        <p class="text-sm">Reviews Completed</p>
+        <div class="text-2xl font-bold">47</div>
+        <p class="text-xs text-gray-500">This month</p>
+      </div>
+
+      <div class="bg-white shadow rounded-lg p-4">
+        <p class="text-sm">Average Rating Given</p>
+        <div class="text-2xl font-bold">4.2</div>
+        <p class="text-xs text-gray-500">Out of 5 stars</p>
+      </div>
+
+      <div class="bg-white shadow rounded-lg p-4">
+        <p class="text-sm">Feedback Provided</p>
+        <div class="text-2xl font-bold">142</div>
+        <p class="text-xs text-gray-500">Total comments</p>
+      </div>
+    </div>
+
+    <!-- Tabs (Static for now) -->
+    <div class="space-y-6">
+      <div class="flex space-x-4 border-b pb-2">
+        <button class="text-blue-600 font-semibold">Pending Reviews</button>
+        <button class="text-gray-500">Review History</button>
+        <button class="text-gray-500">Feedback Templates</button>
+      </div>
+
+      <!-- Pending Reviews List -->
+      <div class="bg-white shadow rounded-lg p-4">
+        <h2 class="text-lg font-bold mb-2">Notes Awaiting Review</h2>
+        <p class="text-sm text-gray-500 mb-4">Click on a note to provide detailed feedback and rating</p>
+
+        <div class="space-y-4">
+          <div class="border rounded-lg p-4">
+            <h4 class="mb-1">Quantum Physics Fundamentals</h4>
+            <p class="text-sm text-gray-500">by Alice Johnson • Submitted 2 hours ago</p>
+            <span class="inline-block mt-2 px-2 py-1 bg-gray-200 text-gray-700 rounded text-xs">Physics</span>
+          </div>
+
+          <div class="border rounded-lg p-4">
+            <h4 class="mb-1">Machine Learning Algorithms</h4>
+            <p class="text-sm text-gray-500">by Bob Chen • Submitted 5 hours ago</p>
+            <span class="inline-block mt-2 px-2 py-1 bg-gray-200 text-gray-700 rounded text-xs">Computer Science</span>
+          </div>
+
+          <div class="border rounded-lg p-4">
+            <h4 class="mb-1">Organic Chemistry Reactions</h4>
+            <p class="text-sm text-gray-500">by Carol Smith • Submitted 1 day ago</p>
+            <span class="inline-block mt-2 px-2 py-1 bg-gray-200 text-gray-700 rounded text-xs">Chemistry</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
