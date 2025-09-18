@@ -3,72 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <title>Leaderboard</title>
+  <link rel="stylesheet" href="leaderboard.css">
 </head>
 
-<body>
-  <div>
+<body class="leaderboard-body">
+  <div class="leaderboard-container">
 
     <!--Header-->
-    <div>
-        <h1>Leaderboard</h1>
-        <p>Top contributors of the website.</p>
+    <div class="leaderboard-header">
+        <h1 class="leaderboard-title">Leaderboard</h1>
+        <p class="leaderboard-subtitle">Top contributors of the website</p>
     </div>
 
     <!--Tabs-->
-    <button>By week</button>
-    <button>By month</button>
+    <div class="leaderboard-tabs">
+      <button class="tab-btn active" onclick="showTab('week')">By Week</button>
+      <button class="tab-btn" onclick="showTab('month')">By Month</button>
+    </div>
 
     <!--By week-->
-    <div>
-        <h2>By week</h2>
-
-        <table style="width:75%;">
+    <div id="week" class="tab-content active">
+        <h2 class="tab-title">Weekly Rankings</h2>
+        <table class="leaderboard-table">
             <colgroup>
-                <col style="width:5%;">
-                <col style="width:50%;">
-                <col style="width:20%">
+                <col style="width:10%;">
+                <col style="width:60%;">
+                <col style="width:30%;">
             </colgroup>
 
-            <!--Table heading-->
-            <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
+            <thead>
+              <tr>
+                  <th>Rank</th>
+                  <th>Name</th>
+                  <th>Score</th>
+              </tr>
+            </thead>
 
-            <!--Table content-->
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>1200</td>
-            </tr>
+            <tbody>
+              <tr>
+                  <td>1</td>
+                  <td>John Doe</td>
+                  <td>1200</td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td>Jane Doe</td>
+                  <td>1000</td>
+              </tr>
+              <tr>
+                  <td>3</td>
+                  <td>Ash</td>
+                  <td>700</td>
+              </tr>
+              <tr>
+                  <td>4</td>
+                  <td>Cole</td>
+                  <td>650</td>
+              </tr>
+              <tr>
+                  <td>5</td>
+                  <td>Mia</td>
+                  <td>500</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
 
-            <tr>
-                <td>2</td>
-                <td>Jane Doe</td>
-                <td>1000</td>
-            </tr>
-
-            <tr>
-                <td>3</td>
-                <td>Ash</td>
-                <td>700</td>
-            </tr>
-
-            <tr>
-                <td>4</td>
-                <td>Cole</td>
-                <td>650</td>
-            </tr>
-
-            <tr>
-                <td>5</td>
-                <td>Mia</td>
-                <td>500</td>
-            </tr>
-
+    <!--By month-->
+    <div id="month" class="tab-content">
+        <h2 class="tab-title">Monthly Rankings</h2>
+        <table class="leaderboard-table">
+            <thead>
+              <tr>
+                  <th>Rank</th>
+                  <th>Name</th>
+                  <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>1</td>
+                  <td>Sarah Lee</td>
+                  <td>4500</td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td>David Kim</td>
+                  <td>4200</td>
+              </tr>
+              <tr>
+                  <td>3</td>
+                  <td>John Doe</td>
+                  <td>4000</td>
+              </tr>
+              <tr>
+                  <td>4</td>
+                  <td>Jane Doe</td>
+                  <td>3700</td>
+              </tr>
+              <tr>
+                  <td>5</td>
+                  <td>Ash</td>
+                  <td>3300</td>
+              </tr>
+            </tbody>
         </table>
     </div>
 
   </div>
+
+  <script src="leaderboard.js"></script>
 </body>
+</html>

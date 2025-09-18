@@ -1,0 +1,124 @@
+/* Body */
+.auth-body {
+  min-height: 100vh;
+  background: #ebf4ff; /* 类似 Tailwind bg-blue-50 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+/* Container */
+.auth-container {
+  max-width: 420px;
+  width: 100%;
+}
+
+/* Header */
+.auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.auth-title {
+  font-size: 28px;
+  color: #2563eb; /* Tailwind text-blue-600 */
+}
+.auth-subtitle {
+  color: #6b7280; /* text-gray-500 */
+  margin-top: 8px;
+}
+
+/* Card */
+.auth-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.auth-card-header {
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.auth-card-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+.auth-card-desc {
+  font-size: 14px;
+  color: #6b7280;
+}
+.auth-card-body {
+  padding: 24px;
+}
+
+/* Tabs */
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.tab {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #4b5563; /* gray-600 */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.tab-active {
+  color: #2563eb; /* blue-600 */
+  border-bottom: 2px solid #2563eb;
+}
+
+/* Forms */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #374151;
+}
+.form-input {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Buttons */
+.btn-primary {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+/* Footer */
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+}
+.back-link {
+  color: #2563eb;
+  text-decoration: none;
+}
+.back-link:hover {
+  text-decoration: underline;
+}

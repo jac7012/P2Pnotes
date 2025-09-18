@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - NoteShare</title>
+  <link rel="stylesheet" href="userProfile.css">
+</head>
+<body>
+  <a href="#" class="back-btn" onclick="goBack()">← Back</a>
+
+  <div class="profile-container">
+    <div class="profile-header">
+      <h1 class="profile-title">User Profile</h1>
+      <p class="profile-subtitle">Manage your account settings and preferences</p>
+      
+      <div class="profile-info">
+        <div style="display: flex; align-items: center;">
+          <div class="user-avatar" id="userAvatar">JD</div>
+          <div class="user-details">
+            <h2 id="userName">John Doe</h2>
+            <div class="user-role" id="userRole">Student</div>
+            <div class="user-handle" id="userHandle">@john_doe_2024</div>
+          </div>
+        </div>
+        <button class="edit-btn" onclick="editProfile()">
+          <span>✏️</span> Edit Profile
+        </button>
+      </div>
+    </div>
+
+    <div class="profile-content">
+      <div class="section">
+        <h3 class="section-title">Account Information (Read-only)</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">User ID</div>
+            <div class="info-value" id="userId">USR-2024-001</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Username</div>
+            <div class="info-value" id="username">john_doe_2024</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Birth Date</div>
+            <div class="info-value" id="birthDate">5/15/1999</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3 class="section-title">Personal Information</h3>
+        <div class="personal-grid">
+          <div class="info-item">
+            <div class="info-label">Display Name</div>
+            <div class="info-value" id="displayName">John Doe</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Email Address</div>
+            <div class="info-value" id="emailAddress">john.doe@university.edu</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Phone Number</div>
+            <div class="info-value" id="phoneNumber">+1 555-0123</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Password</div>
+            <div class="info-value password-hidden">••••••••</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3 class="section-title">Account Statistics</h3>
+        <div class="stats-grid">
+          <div class="stat-card notes">
+            <div class="stat-number" id="notesShared">42</div>
+            <div class="stat-label">Notes Shared</div>
+          </div>
+          <div class="stat-card downloads">
+            <div class="stat-number" id="downloads">156</div>
+            <div class="stat-label">Downloads</div>
+          </div>
+          <div class="stat-card rating">
+            <div class="stat-number" id="avgRating">3.8</div>
+            <div class="stat-label">Avg Rating</div>
+          </div>
+          <div class="stat-card rank">
+            <div class="stat-number" id="rank">15</div>
+            <div class="stat-label">Rank</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const currentUser = {
+      id: "USR-2024-001",
+      username: "john_doe_2024",
+      displayName: "John Doe",
+      email: "john.doe@university.edu",
+      phone: "+1 555-0123",
+      birthDate: "5/15/1999",
+      accountType: "Student",
+      registrationDate: "2024-01-15",
+      stats: {
+        notesShared: 42,
+        downloads: 156,
+        avgRating: 3.8,
+        rank: 15
+      }
+    };
+
+    function loadUserProfile(user) {
+      const initials = user.displayName.split(' ').map(n => n[0]).join('');
+      document.getElementById('userAvatar').textContent = initials;
+      document.getElementById('userName').textContent = user.displayName;
+      document.getElementById('userRole').textContent = user.accountType;
+      document.getElementById('userHandle').textContent = `@${user.username}`;
+      document.getElementById('userId').textContent = user.id;
+      document.getElementById('username').textContent = user.username;
+      document.getElementById('birthDate').textContent = user.birthDate;
+      document.getElementById('displayName').textContent = user.displayName;
+      document.getElementById('emailAddress').textContent = user.email;
+      document.getElementById('phoneNumber').textContent = user.phone;
+      document.getElementById('notesShared').textContent = user.stats.notesShared;
+      document.getElementById('downloads').textContent = user.stats.downloads;
+      document.getElementById('avgRating').textContent = user.stats.avgRating;
+      document.getElementById('rank').textContent = user.stats.rank;
+    }
+
+    function editProfile() {
+      alert('Edit Profile functionality would open a form to modify personal information like display name, email, phone number, etc.');
+    }
+
+    function goBack() {
+      alert('Going back to dashboard...');
+    }
+
+    loadUserProfile(currentUser);
+
+    document.querySelectorAll('.stat-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const label = this.querySelector('.stat-label').textContent;
+        const number = this.querySelector('.stat-number').textContent;
+        alert(`${label}: ${number}\n\nClick here to view detailed statistics.`);
+      });
+    });
+  </script>
+</body>
+</html>

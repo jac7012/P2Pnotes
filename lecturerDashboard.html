@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lecturer Dashboard</title>
+  <link rel="stylesheet" href="lecturerDashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <div class="dashboard-container">
+    <!-- Header -->
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Lecturer Dashboard</h1>
+      <p class="dashboard-subtitle">Review student notes and provide feedback</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <p class="stat-label">Pending Reviews</p>
+        <div class="stat-value">3</div>
+        <p class="stat-desc">Awaiting your review</p>
+      </div>
+
+      <div class="stat-card">
+        <p class="stat-label">Reviews Completed</p>
+        <div class="stat-value">47</div>
+        <p class="stat-desc">This month</p>
+      </div>
+
+      <div class="stat-card">
+        <p class="stat-label">Average Rating Given</p>
+        <div class="stat-value">4.2</div>
+        <p class="stat-desc">Out of 5 stars</p>
+      </div>
+
+      <div class="stat-card">
+        <p class="stat-label">Feedback Provided</p>
+        <div class="stat-value">142</div>
+        <p class="stat-desc">Total comments</p>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-container">
+      <div class="tabs">
+        <button class="tab tab-active">Pending Reviews</button>
+        <button class="tab">Review History</button>
+        <button class="tab">Feedback Templates</button>
+      </div>
+
+      <!-- Pending Reviews List -->
+      <div class="reviews-list">
+        <h2 class="reviews-title">Notes Awaiting Review</h2>
+        <p class="reviews-subtitle">Click on a note to provide detailed feedback and rating</p>
+
+        <div class="review-item">
+          <h4 class="review-name">Quantum Physics Fundamentals</h4>
+          <p class="review-meta">by Alice Johnson • Submitted 2 hours ago</p>
+          <span class="review-tag">Physics</span>
+        </div>
+
+        <div class="review-item">
+          <h4 class="review-name">Machine Learning Algorithms</h4>
+          <p class="review-meta">by Bob Chen • Submitted 5 hours ago</p>
+          <span class="review-tag">Computer Science</span>
+        </div>
+
+        <div class="review-item">
+          <h4 class="review-name">Organic Chemistry Reactions</h4>
+          <p class="review-meta">by Carol Smith • Submitted 1 day ago</p>
+          <span class="review-tag">Chemistry</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
