@@ -218,7 +218,7 @@
                 <label for="loginAccountType">Account Type</label>
                 <select id="loginAccountType" name="accountType">
                     <option value="Student" selected>Student</option>
-                    <option value="Lecturer">Teacher</option>
+                    <option value="Lecturer">Lecturer</option>
                     <option value="Admin">Admin</option>
                 </select>
             </div>
@@ -240,7 +240,7 @@
                 <label for="regAccountType">Account Type</label>
                 <select id="regAccountType" name="accountType">
                     <option value="Student" selected>Student</option>
-                    <option value="Lecturer">Teacher</option>
+                    <option value="Lecturer">Lecturer</option>
                     <option value="Admin">Admin</option>
                 </select>
             </div>
@@ -288,66 +288,91 @@
     </style>
 
     <script>
+        // Move switchTab to the global scope to be accessible from the HTML onclick attribute
+        function switchTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const registrationForm = document.getElementById('registrationForm');
+            const tabs = document.querySelectorAll('.auth-tab');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                registrationForm.classList.add('hidden');
+                tabs[0].classList.add('active'); // Add active class to login button
+            } else if (tab === 'register') {
+                loginForm.classList.add('hidden');
+                registrationForm.classList.remove('hidden');
+                tabs[1].classList.add('active'); // Add active class to register button
+            }
+        }
+
+        // Move handleLoginSuccess to the global scope
+        function handleLoginSuccess(role) {
+            let dashboardUrl;
+            switch (role.toLowerCase()) {
+                case 'student':
+                    dashboardUrl = 'studentDashboard.html';
+                    break;
+                case 'lecturer':
+                    dashboardUrl = 'lecturerDashboard.html';
+                    break;
+                case 'admin':
+                    dashboardUrl = 'adminDashboard.html';
+                    break;
+                default:
+                    alert('Unknown user role. Redirecting to home page.');
+                    dashboardUrl = 'index.html';
+            }
+            window.location.href = dashboardUrl;
+        }
+
+        // All event listeners that rely on DOM elements should be inside this block
         document.addEventListener('DOMContentLoaded', () => {
             const loginForm = document.getElementById('loginForm');
             const registrationForm = document.getElementById('registrationForm');
-            const loginBtn = document.querySelector('button[onclick="switchTab(\'login\')"]');
-            const registerBtn = document.querySelector('button[onclick="switchTab(\'register\')"]');
-
-            function switchTab(tab) {
-                if (tab === 'login') {
-                    loginForm.classList.remove('hidden');
-                    registrationForm.classList.add('hidden');
-                    loginBtn.classList.add('active');
-                    registerBtn.classList.remove('active');
-                } else if (tab === 'register') {
-                    loginForm.classList.add('hidden');
-                    registrationForm.classList.remove('hidden');
-                    loginBtn.classList.remove('active');
-                    registerBtn.classList.add('active');
-                }
-            }
-
-            // Corrected and updated event listeners
-            document.querySelector('.auth-tabs').addEventListener('click', (e) => {
-                if (e.target.tagName === 'BUTTON') {
-                    switchTab(e.target.textContent.toLowerCase());
-                }
-            });
-
-            // Prevent default form submission and handle login logic
+            
+            // Login form submission handler
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                alert('Login form submitted!');
-                // Add your login logic here (e.g., fetch API call)
+                const username = document.getElementById('loginUsername').value;
+                const password = document.getElementById('loginPassword').value;
+                const accountType = document.getElementById('loginAccountType').value;
+
+                // Simulate a successful login with a mock role for demonstration
+                // In a real application, you would make a fetch() request to your server
+                // and get the actual role from the response.
+                
+                // Example of a mock response:
+                const mockRole = accountType; // Using the selected account type as the role
+                handleLoginSuccess(mockRole);
             });
 
-            // Prevent default form submission and handle registration logic
+            // Registration form submission handler
             registrationForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-
                 const password = document.getElementById('regPassword').value;
                 const confirmPassword = document.getElementById('confirmPassword').value;
-
+                
                 if (password !== confirmPassword) {
                     alert('Passwords do not match!');
                     return;
                 }
-
+                
                 const formData = new FormData(e.target);
                 const data = Object.fromEntries(formData);
-
+                
                 console.log('Registration data:', data);
                 alert('Account created successfully!');
-                // Add your registration logic here (e.g., fetch API call)
+                // Add your registration logic here (e.g., fetch() call to a server)
             });
 
-            // Help icon click
+            // Help icon click handler
             document.querySelector('.help-icon').addEventListener('click', () => {
                 alert('Need help? Contact support at help@noteshare.com');
             });
         });
     </script>
+
 </body>
 </html>
-
