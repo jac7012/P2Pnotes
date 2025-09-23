@@ -29,12 +29,6 @@
       </div>
 
       <div class="bg-white shadow rounded-lg p-4">
-        <p class="text-sm">Average Rating Given</p>
-        <div class="text-2xl font-bold">4.2</div>
-        <p class="text-xs text-gray-500">Out of 5 stars</p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg p-4">
         <p class="text-sm">Feedback Provided</p>
         <div class="text-2xl font-bold">142</div>
         <p class="text-xs text-gray-500">Total comments</p>
@@ -46,7 +40,6 @@
       <div class="flex space-x-4 border-b pb-2">
         <button class="text-blue-600 font-semibold">Pending Reviews</button>
         <button class="text-gray-500">Review History</button>
-        <button class="text-gray-500">Feedback Templates</button>
       </div>
 
       <!-- Pending Reviews List -->
