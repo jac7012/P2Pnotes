@@ -1,74 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Leaderboard</title>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f9;
+    margin: 0;
+    color: #333;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* --- Navigation Bar (Same as student dashboard) --- */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 40px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+.nav-item {
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+    padding: 15px 0;
+    transition: color 0.3s;
+}
+.nav-item:hover {
+    color: #007bff;
+}
+.nav-item.active {
+    border-bottom: 3px solid #007bff;
+    color: #007bff;
+}
+.nav-right .nav-item {
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+}
+
+/* --- Dashboard Header --- */
+.dashboard-header {
+    margin-top: 40px;
+}
+.dashboard-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+.dashboard-header p {
+    color: #666;
+    margin-top: 0;
+}
+
+/* --- Top Contributor Hero Section --- */
+.top-contributors-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Align cards to the bottom */
+    gap: 30px;
+    margin-top: 40px;
+}
+.top-contributor {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+    border: 2px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    padding-top: 50px; /* Space for the award icon */
+}
+.top-contributor.first {
+    border-color: gold;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.top-contributor.second {
+    border-color: silver;
+}
+.top-contributor.third {
+    border-color: #cd7f32; /* Bronze */
+}
+.award-icon {
+    font-size: 2em;
+    color: gold;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.top-contributor.second .award-icon { color: silver; }
+.top-contributor.third .award-icon { color: #cd7f32; }
+
+.avatar-initials {
+    width: 80px;
+    height: 80px;
+    background-color: #eee;
+    color: #333;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.name {
+    font-size: 1.5em;
+    margin: 5px 0;
+}
+.subject {
+    color: #666;
+    font-size: 0.9em;
+}
+.stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 15px 0;
+}
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;
+}
+.stat-value {
+    font-weight: bold;
+}
+.total-points {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+.points-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* --- Tabbed Section --- */
+.notes-section {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.notes-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+.tab-button {
+    border: none;
+    background: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #777;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+.tab-button.active {
+    color: #007bff;
+    border-bottom: 3px solid #007bff;
+}
+
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* --- Leader List Items --- */
+.leader-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.leader-item {
+    display: flex;
+    align-items: center;
+    background-color: #fcfcfc;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.rank-badge {
+    padding: 5px 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #555;
+    margin-right: 15px;
+}
+.rank-badge.gold {
+    background-color: gold;
+}
+.rank-badge.silver {
+    background-color: silver;
+}
+.rank-badge.bronze {
+    background-color: #cd7f32;
+}
+
+.leader-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-right: 15px;
+}
+.leader-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.leader-name {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.leader-info {
+    font-size: 0.9em;
+    color: #777;
+}
+.leader-stats {
+    display: flex;
+    gap: 25px;
+    text-align: right;
+    align-items: center;
+}
+.leader-stats .stat-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;
+}
+.leader-stats .stat-value {
+    font-weight: bold;
+}
+.leader-stats .stat-label {
+    color: #777;
+}
+    </style>
 </head>
-
 <body>
-  <div>
+        <nav class="main-nav">
+        <div class="nav-left">
+            <span class="logo">P2P Notes</span>
+            <a href="mainPage.html" class="nav-item">Home</a>
+            <a href="studentDashboard.html" class="nav-item">Dashboard</a>
+            <a href="leaderboard.html" class="nav-item active">Leaderboard</a>
+            <a href="userprofile.html" class="nav-item">Profile</a>
+        </div>
+        <div class="nav-right">
+            <a href="" class="nav-item">Logout</a>
+        </div>
+    </nav>
 
-    <!--Header-->
-    <div>
-        <h1>Leaderboard</h1>
-        <p>Top contributors of the website.</p>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Leaderboard</h1>
+            <p>Top contributors and highest-rated note creators in our community</p>
+        </div>
+
+        <div class="top-contributors-grid">
+            <div class="top-contributor second">
+                <div class="award-icon"><i class="fas fa-medal"></i></div>
+                <div class="avatar-initials">MR</div>
+                <h3 class="name">Michael Rodriguez</h3>
+                <span class="subject">Mathematics</span>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value">42</span>
+                        <span class="stat-label">Notes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">2,100</span>
+                        <span class="stat-label">Downloads</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">4.7 ⭐</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                </div>
+                <div class="total-points">
+                    <span class="points-value">2,298</span>
+                    <span class="points-label">Total Points</span>
+                </div>
+            </div>
+            <div class="top-contributor first">
+                <div class="award-icon"><i class="fas fa-trophy"></i></div>
+                <div class="avatar-initials">SC</div>
+                <h3 class="name">Sarah Chen</h3>
+                <span class="subject">Computer Science</span>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value">47</span>
+                        <span class="stat-label">Notes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">2,340</span>
+                        <span class="stat-label">Downloads</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">4.8 ⭐</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                </div>
+                <div class="total-points">
+                    <span class="points-value">2,456</span>
+                    <span class="points-label">Total Points</span>
+                </div>
+            </div>
+            <div class="top-contributor third">
+                <div class="award-icon"><i class="fas fa-medal"></i></div>
+                <div class="avatar-initials">ET</div>
+                <h3 class="name">Emma Thompson</h3>
+                <span class="subject">Physics</span>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value">38</span>
+                        <span class="stat-label">Notes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">1,890</span>
+                        <span class="stat-label">Downloads</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">4.9 ⭐</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                </div>
+                <div class="total-points">
+                    <span class="points-value">2,145</span>
+                    <span class="points-label">Total Points</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="notes-section">
+            <div class="notes-tabs">
+                <button class="tab-button active" data-tab="all-time">All Time</button>
+                <button class="tab-button" data-tab="this-month">This Month</button>
+                <button class="tab-button" data-tab="top-rated">Top Rated</button>
+            </div>
+
+           <div id="all-time-content" class="tab-content active">
+    <h3 class="tab-content-title">All-Time Leaderboard</h3>
+    <p>Top contributors based on total points earned</p>
+    <div class="leader-list">
+        <div class="leader-item">
+            <div class="rank-badge gold">1st</div>
+            <div class="leader-avatar">SC</div>
+            <div class="leader-details">
+                <span class="leader-name">Sarah Chen</span>
+                <span class="leader-info">Computer Science • 4.8 ⭐</span>
+            </div>
+            <div class="leader-stats">
+                <div class="stat-item">
+                    <span class="stat-value">2,456</span>
+                    <span class="stat-label">Total Points</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">47</span>
+                    <span class="stat-label">Notes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">2,340</span>
+                    <span class="stat-label">Downloads</span>
+                </div>
+            </div>
+        </div>
+        <div class="leader-item">
+            <div class="rank-badge silver">1st</div>
+            <div class="leader-avatar">MR</div>
+            <div class="leader-details">
+                <span class="leader-name">Michael Rodriguez</span>
+                <span class="leader-info">Mathematics • 4.7 ⭐</span>
+            </div>
+            <div class="leader-stats">
+                <div class="stat-item">
+                    <span class="stat-value">2,298</span>
+                    <span class="stat-label">Total Points</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">42</span>
+                    <span class="stat-label">Notes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">2,100</span>
+                    <span class="stat-label">Downloads</span>
+                </div>
+            </div>
+        </div>
+        <div class="leader-item">
+            <div class="rank-badge bronze">3rd</div>
+            <div class="leader-avatar">ET</div>
+            <div class="leader-details">
+                <span class="leader-name">Emma Thompson</span>
+                <span class="leader-info">Physics • 4.9 ⭐</span>
+            </div>
+            <div class="leader-stats">
+                <div class="stat-item">
+                    <span class="stat-value">2,145</span>
+                    <span class="stat-label">Total Points</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">38</span>
+                    <span class="stat-label">Notes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">1,890</span>
+                    <span class="stat-label">Downloads</span>
+                </div>
+            </div>
+        </div>
+        <div class="leader-item">
+            <div class="rank-badge">#4</div>
+            <div class="leader-avatar">DK</div>
+            <div class="leader-details">
+                <span class="leader-name">David Kim</span>
+                <span class="leader-info">Chemistry • 4.6 ⭐</span>
+            </div>
+            <div class="leader-stats">
+                <div class="stat-item">
+                    <span class="stat-value">2,032</span>
+                    <span class="stat-label">Total Points</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">35</span>
+                    <span class="stat-label">Notes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">1,756</span>
+                    <span class="stat-label">Downloads</span>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <!--Tabs-->
-    <button>By week</button>
-    <button>By month</button>
+            <div id="this-month-content" class="tab-content">
+                <h3 class="tab-content-title">Monthly Leaders</h3>
+                <p>Top contributors for the current month</p>
+                <div class="leader-list">
+                    <div class="leader-item">
+                        <div class="rank-badge gold">1st</div>
+                        <div class="leader-avatar">AJ</div>
+                        <div class="leader-details">
+                            <span class="leader-name">Alex Johnson</span>
+                            <span class="leader-info">Mathematics</span>
+                        </div>
+                        <div class="leader-stats">
+                            <span class="stat-value">12</span>
+                            <span class="stat-label">uploads</span>
+                        </div>
+                    </div>
+                    <div class="leader-item">
+                        <div class="rank-badge silver">2nd</div>
+                        <div class="leader-avatar">SD</div>
+                        <div class="leader-details">
+                            <span class="leader-name">Sophie Davis</span>
+                            <span class="leader-info">Physics</span>
+                        </div>
+                        <div class="leader-stats">
+                            <span class="stat-value">10</span>
+                            <span class="stat-label">uploads</span>
+                        </div>
+                    </div>
+                    <div class="leader-item">
+                        <div class="rank-badge bronze">3rd</div>
+                        <div class="leader-avatar">RM</div>
+                        <div class="leader-details">
+                            <span class="leader-name">Ryan Miller</span>
+                            <span class="leader-info">Computer Science</span>
+                        </div>
+                        <div class="leader-stats">
+                            <span class="stat-value">9</span>
+                            <span class="stat-label">uploads</span>
+                        </div>
+                    </div>
+                    <div class="leader-item">
+                        <div class="rank-badge">#4</div>
+                        <div class="leader-avatar">MT</div>
+                        <div class="leader-details">
+                            <span class="leader-name">Mia Taylor</span>
+                            <span class="leader-info">Chemistry</span>
+                        </div>
+                        <div class="leader-stats">
+                            <span class="stat-value">8</span>
+                            <span class="stat-label">uploads</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!--By week-->
-    <div>
-        <h2>By week</h2>
-
-        <table style="width:75%;">
-            <colgroup>
-                <col style="width:5%;">
-                <col style="width:50%;">
-                <col style="width:20%">
-            </colgroup>
-
-            <!--Table heading-->
-            <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
-
-            <!--Table content-->
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>1200</td>
-            </tr>
-
-            <tr>
-                <td>2</td>
-                <td>Jane Doe</td>
-                <td>1000</td>
-            </tr>
-
-            <tr>
-                <td>3</td>
-                <td>Ash</td>
-                <td>700</td>
-            </tr>
-
-            <tr>
-                <td>4</td>
-                <td>Cole</td>
-                <td>650</td>
-            </tr>
-
-            <tr>
-                <td>5</td>
-                <td>Mia</td>
-                <td>500</td>
-            </tr>
-
-        </table>
+            <div id="top-rated-content" class="tab-content">
+                <h3 class="tab-content-title">Top Rated Contributors</h3>
+                <p>Users with the highest average ratings</p>
+                <div class="leader-list">
+                    <div class="leader-item">
+                        <div class="rank-badge gold">1st</div>
+                        <div class="leader-avatar">OS</div>
+                        <div class="leader-details">
+                            <span class="leader-name">Oliver Smith</span>
+                            <span class="leader-info">Engineering</span>
+                        </div>
+                        <div class="leader-stats">
+                            <span class="stat-value">4.95 ⭐</span>
+                            <span class="stat-label">42 reviews</span>
+                        </div>
+                    </div>
+                    <div class="leader-item">
+                        <div class="rank-badge silver">2nd</div>
+                        <div class="leader-avatar">ZM</div>
+                        <div class="leader-details">
+                            <span class="leader-name">Zoe Martinez</span>
+                            <span class="leader-info">Mathematics</span>
+                        </div>
+                        <div class="leader-stats">
+                            <span class="stat-value">4.93 ⭐</span>
+                            <span class="stat-label">38 reviews</span>
+                        </div>
+                    </div>
+                    <div class="leader-item">
+                        <div class="rank-badge bronze">3rd</div>
+                        <div class="leader-avatar">LL</div>
+                        <div class="leader-details">
+                            <span class="leader-name">Lucas Lee</span>
+                            <span class="leader-info">Physics</span>
+                        </div>
+                        <div class="leader-stats">
+                            <span class="stat-value">4.91 ⭐</span>
+                            <span class="stat-label">35 reviews</span>
+                        </div>
+                    </div>
+                    <div class="leader-item">
+                        <div class="rank-badge">#4</div>
+                        <div class="leader-avatar">AW</div>
+                        <div class="leader-details">
+                            <span class="leader-name">Ava Wilson</span>
+                            <span class="leader-info">Chemistry</span>
+                        </div>
+                        <div class="leader-stats">
+                            <span class="stat-value">4.89 ⭐</span>
+                            <span class="stat-label">41 reviews</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
 
-  </div>
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Get the target tab's ID from the data attribute
+            const targetId = tab.getAttribute('data-tab');
+
+            // Remove 'active' class from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+
+            // Add 'active' class to the clicked tab and its content
+            tab.classList.add('active');
+            document.getElementById(targetId + '-content').classList.add('active');
+        });
+    });
+});
+    </script>
 </body>
